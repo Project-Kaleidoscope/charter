@@ -1,4 +1,4 @@
-Welcome to the LineageOS Device Support Requirements. This document enumerates the requirements that must be met in order for devices to be deemed ship ready for LineageOS releases, beginning with Android Oreo.
+Welcome to the KaleidoscopeOS Device Support Requirements. This document enumerates the requirements that must be met in order for devices to be deemed ship ready for KaleidoscopeOS releases.
 To be considered ready, device maintainers MUST meet the requirements presented in this document, including any documents incorporated via reference.
 
 The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” is per the IETF standard defined in RFC2119.
@@ -63,7 +63,7 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 
 ## Process
 
-* Device or software deviations from our core product (as described below) MUST be approved by no less than 3 Project Directors.
+* Device or software deviations from our core product (as described below) MUST be approved by no less than 2 Project Directors.
 * Device or software exceptions SHOULD be made via change request to this repository.
 * All device or software exceptions that are granted MUST be documented on the Wiki for all affected devices.
 
@@ -178,7 +178,7 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 
 ## Hardware Deviations
 
-__Hardware deviations are defined as exemptions granted for hardware requirements above that worked in stock, but do not work in LineageOS.__
+__Hardware deviations are defined as exemptions granted for hardware requirements above that worked in stock, but do not work in KaleidoscopeOS.__
 
 * All hardware deviations from stock MUST be reported on the Wiki page for the device, with a user understandable justification.
 
@@ -186,13 +186,11 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 
 ## Device tree structure
 
-* Device trees MUST contain a Lineage-specific makefile with device declaration of lineage_[devicename].
-* Device trees MUST support a lineage.dependencies file for `breakfast` command & roomservice to be functional.
-  * This file MUST NOT include any dependencies outside of the "LineageOS" organization.
+* Device trees MUST contain a Kaleidoscope-specific makefile with device declaration of kscope_[devicename].
 
 ## Build type
 
-* All devices MUST be configured as userdebug releases.
+* All devices MUST be configured as user releases.
 
 ## Kernel
 
@@ -233,7 +231,7 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 
 ## Updater
 
-* All devices with a shipping build of LineageOS MUST support upgrades via the native LineageOS Updater application & the recovery documented on the Wiki for that device.
+* All devices with a shipping build of KaleidoscopeOS MUST support upgrades via the native KaleidoscopeOS Updater application & the recovery documented on the Wiki for that device.
 
 ## FRP
 
@@ -244,12 +242,12 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 * All devices MUST NOT alter SafetyNet validation responses.
 
 ## Binder
+
 * All devices MUST use the 64-bit Binder API.
 
 ## Root (su)
 
-* All devices MUST NOT ship with su included.
-* All devices shipping LineageOS 16.0 or earlier MUST support su installation via LineageOS provided ‘Extras’ download.
+* All devices MUST NOT ship with su binary or Magisk included.
 
 ## Non-PIE Blobs
 
@@ -257,7 +255,7 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 
 ## Proprietary files extraction
 
-* Devices MUST have a working proprietary files extraction script in their device tree (or device tree dependencies) that reproduces an exact copy of the binaries required to build LineageOS from an existing LineageOS installation.
+* Devices MUST have a working proprietary files extraction script in their device tree (or device tree dependencies) that reproduces an exact copy of the binaries required to build KaleidoscopeOS from an existing KaleidoscopeOS installation.
 * Devices SHOULD use the global extraction script (located in tools/extract-utils).
 * If a device maintainer elects to not use the common extraction script, the maintainer MUST ensure that the Wiki page for their device has valid instructions for operating the custom extraction script.
 * Devices MUST use proprietary files extracted from, in order of preference, the same device's publicly-released image, another device's publicly-released image, or some other source with appropriately transferrable use/release/dissemination rights. In the event of the last option, artifacts documenting suitable transferability of rights MUST be provided to LineageOS project leadership.
@@ -274,7 +272,7 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 * All devices MUST assert on known to be working firmware versions if some firmware versions are known to be non-working.
 * A/B devices are exempted from the above rule, and instead must do one of the following:
   * If the device is capable of shipping firmware it MUST do so.
-  * If the device is not capable of shipping firmware (eg. a device with multiple variants supported in one build) the device MUST ensure both slots are on a known good firmware (eg. using the copy-partitions before_lineage_install template on the Wiki).
+  * If the device is not capable of shipping firmware (eg. a device with multiple variants supported in one build) the device MUST ensure both slots are on a known good firmware (eg. using the copy-partitions before_kscope_install template on the Wiki).
 
 ## exFAT Support
 
@@ -289,13 +287,14 @@ __LineageOS operates under the assumption that OEM device licensing for exFAT is
 
 ## Software Deviations
 
-__Software deviations are defined as exemptions granted for software requirements above that worked in stock, but do not work in LineageOS.__
+__Software deviations are defined as exemptions granted for software requirements above that worked in stock, but do not work in KaleidoscopeOS.__
 
-* All software deviations from other LineageOS devices of the same type MUST be approved by Directors (eg. if one wants to remove Music app, get approval).
-* All software deviations from other LineageOS devices of the same type MUST be reported on the Wiki page for the device, with a user understandable justification.
-* Device maintainers MUST ship Jelly or another LineageOS sourced web browser.
+* All software deviations from other KaleidoscopeOS devices of the same type MUST be approved by Directors (eg. if one wants to remove Music app, get approval).
+* All software deviations from other KaleidoscopeOS devices of the same type MUST be reported on the Wiki page for the device, with a user understandable justification.
+* Device maintainers MUST ship Chromium or another KaleidoscopeOS sourced web browser.
 
 ## Vendor Images
+
 * All non-A/B devices relying on an OEM provided vendor partition must assert vendor image versions at flash-time.
 * All A/B devices with a vendor partition MUST either:
   * Build a vendor image.
@@ -304,6 +303,7 @@ __Software deviations are defined as exemptions granted for software requirement
 * All Treble enabled devices SHOULD verify basic hardware functionality with an AOSP GSI.
 
 # Quality of life
+
 ## Commit Authorship
 
 * All non-original commits MUST have proper authorship attribution from the source it was taken from or adapted from.
@@ -345,10 +345,10 @@ __Software deviations are defined as exemptions granted for software requirement
 
 ## Recovery
 
-* Maintainers MUST document for users on the Wiki a valid Recovery image by which to install LineageOS zip files.
-* Devices that do not have traditional Recovery images MUST support & document another means of installation for LineageOS zip files.
-* Maintainers wishing to ship LineageOS 17.0+ for their device MUST verify official Lineage Recovery distributions work for LineageOS installation.
-* Maintainers SHOULD ship Lineage recovery as the default solution for their device on the Wiki, though may provide TWRP, or any valid recovery image so long as they have valid installation instructions on the Wiki.
+* Maintainers MUST document for users on the Wiki a valid Recovery image by which to install KaleidoscopeOS zip files.
+* Devices that do not have traditional Recovery images MUST support & document another means of installation for KaleidoscopeOS zip files.
+* Maintainers MUST verify official Kaleidoscope Recovery distributions work for KaleidoscopeOS installation.
+* Maintainers SHOULD ship Kaleidoscope recovery as the default solution for their device on the Wiki, though may provide TWRP, or any valid recovery image so long as they have valid installation instructions on the Wiki.
 * Maintainers SHOULD verify that Teamwin Recovery Project (TWRP) official distributions work for LineageOS installation.
 * Failures in official TWRP recoveries SHOULD be raised with the TWRP team or remedied by the maintainer.
 
