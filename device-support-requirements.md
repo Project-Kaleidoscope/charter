@@ -28,7 +28,6 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
   * [Light](#light)
   * [Other Sensors](#other-sensors)
   * [Accessories](#accessories)
-  * [Hardware Deviations](#hardware-deviations)
 * [Software support](#software-support)
   * [Device tree structure](#device-tree-structure)
   * [Build type](#build-type)
@@ -40,24 +39,17 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
   * [SafetyNet](#safetynet)
   * [Binder](#binder)
   * [Root (su)](#root-su)
-  * [Non-PIE Blobs](#non-pie-blobs)
   * [Proprietary files extraction](#proprietary-files-extraction)
   * [CVE](#cve)
   * [Firmware](#firmware)
-  * [exFAT Support](#exfat-support)
-  * [Additional Features](#additional-features)
   * [Software Deviations](#software-deviations)
   * [Vendor Images](#vendor-images)
 * [Quality of life](#quality-of-life)
   * [Commit Authorship](#commit-authorship)
-  * [Copyrights](#copyrights)
   * [Workflow](#workflow)
-  * [GitLab Issues](#gitlab-issues)
   * [Licensing](#licensing)
-  * [Wiki](#wiki)
   * [Stability](#stability)
   * [Recovery](#recovery)
-* [Exceptions](#exceptions)
 
 # Attaining exceptions
 
@@ -65,7 +57,6 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 
 * Device or software deviations from our core product (as described below) MUST be approved by no less than 2 Project Directors.
 * Device or software exceptions SHOULD be made via change request to this repository.
-* All device or software exceptions that are granted MUST be documented on the Wiki for all affected devices.
 
 # Hardware Support
 
@@ -176,12 +167,6 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 
 * All devices with proprietary accessories SHOULD support those accessories (eg. O-Click, Essential 360 Camera).
 
-## Hardware Deviations
-
-__Hardware deviations are defined as exemptions granted for hardware requirements above that worked in stock, but do not work in KaleidoscopeOS.__
-
-* All hardware deviations from stock MUST be reported on the Wiki page for the device, with a user understandable justification.
-
 # Software support
 
 ## Device tree structure
@@ -194,7 +179,6 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 
 ## Kernel
 
-* All devices MUST NOT ship a prebuilt kernel.
 * All devices MUST NOT implement software based touchscreen wake features such as double tap to wake, swipe to wake or gestures if there is no hardware-backed support for them in the touchscreen firmware.
 * All devices MUST NOT implement forced fast charge over USB methods that violate the USB specifications.
 * All devices MUST NOT implement any form of clock manipulation (underclocking, overclocking, etc.) for any processor (CPU, GPU).
@@ -231,7 +215,7 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 
 ## Updater
 
-* All devices with a shipping build of KaleidoscopeOS MUST support upgrades via the native KaleidoscopeOS Updater application & the recovery documented on the Wiki for that device.
+* All devices with a shipping build of KaleidoscopeOS MUST support upgrades via the native KaleidoscopeOS Updater application.
 
 ## FRP
 
@@ -249,16 +233,10 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 
 * All devices MUST NOT ship with su binary or Magisk included.
 
-## Non-PIE Blobs
-
-* Devices MUST NOT use non-PIE (position-independent executable) binaries.
-
 ## Proprietary files extraction
 
 * Devices MUST have a working proprietary files extraction script in their device tree (or device tree dependencies) that reproduces an exact copy of the binaries required to build KaleidoscopeOS from an existing KaleidoscopeOS installation.
 * Devices SHOULD use the global extraction script (located in tools/extract-utils).
-* If a device maintainer elects to not use the common extraction script, the maintainer MUST ensure that the Wiki page for their device has valid instructions for operating the custom extraction script.
-* Devices MUST use proprietary files extracted from, in order of preference, the same device's publicly-released image, another device's publicly-released image, or some other source with appropriately transferrable use/release/dissemination rights. In the event of the last option, artifacts documenting suitable transferability of rights MUST be provided to LineageOS project leadership.
 * All proprietary files lists MUST contain a short comment noting the source of any un-pinned (default) proprietary files.
 * Any proprietary files not sourced from the noted default MUST be pinned in the respective proprietary files list and have a short comment noting the source of those proprietary files.
 
@@ -272,25 +250,13 @@ __Hardware deviations are defined as exemptions granted for hardware requirement
 * All devices MUST assert on known to be working firmware versions if some firmware versions are known to be non-working.
 * A/B devices are exempted from the above rule, and instead must do one of the following:
   * If the device is capable of shipping firmware it MUST do so.
-  * If the device is not capable of shipping firmware (eg. a device with multiple variants supported in one build) the device MUST ensure both slots are on a known good firmware (eg. using the copy-partitions before_kscope_install template on the Wiki).
-
-## exFAT Support
-
-__LineageOS operates under the assumption that OEM device licensing for exFAT is attached to the device, not software. LineageOS will comply with all requests for removal of exFAT support from OEMs, Microsoft or their representatives upon contact to legal@lineageos.org.__
-
-* All devices with exFAT support on stock MAY support exFAT with (and only with) a kernel based implementation.
-* All devices without exFAT support on stock MUST NOT support exFAT.
-
-## Additional Features
-
-* All devices SHOULD support in-kernel (MDSS, MDNIE or similar) LiveDisplay colour adjustment.
+  * If the device is not capable of shipping firmware (eg. a device with multiple variants supported in one build) the device MUST ensure both slots are on a known good firmware.
 
 ## Software Deviations
 
 __Software deviations are defined as exemptions granted for software requirements above that worked in stock, but do not work in KaleidoscopeOS.__
 
 * All software deviations from other KaleidoscopeOS devices of the same type MUST be approved by Directors (eg. if one wants to remove Music app, get approval).
-* All software deviations from other KaleidoscopeOS devices of the same type MUST be reported on the Wiki page for the device, with a user understandable justification.
 * Device maintainers MUST ship Chromium or another KaleidoscopeOS sourced web browser.
 
 ## Vendor Images
@@ -298,8 +264,8 @@ __Software deviations are defined as exemptions granted for software requirement
 * All non-A/B devices relying on an OEM provided vendor partition must assert vendor image versions at flash-time.
 * All A/B devices with a vendor partition MUST either:
   * Build a vendor image.
-  * Detail on the Wiki: The required firmware version, the process of installing it, and a process that ensures all slots are on the same firmware (eg. the Wiki's copy-partitions template).
-* All maintainers MUST NOT require a modified prebuilt vendor image either in their build tree, or on the Wiki.
+  * Provide details to users: The required firmware version, the process of installing it, and a process that ensures all slots are on the same firmware.
+* All maintainers MUST NOT require a modified prebuilt vendor image in their build tree.
 * All Treble enabled devices SHOULD verify basic hardware functionality with an AOSP GSI.
 
 # Quality of life
@@ -308,22 +274,10 @@ __Software deviations are defined as exemptions granted for software requirement
 
 * All non-original commits MUST have proper authorship attribution from the source it was taken from or adapted from.
 
-## Copyrights
-
-* All original contributions MUST be copyrighted as “(C) [YEAR] The LineageOS Project”.
-* All LineageOS copyrights MUST only be additive to the copyright header.
-* Do not remove copyrights from CyanogenMod, Cyanogen Inc or any other upstream.
-
 ## Workflow
 
 * Force pushing branches SHOULD be avoided.
 * In the event of a force pushed branch, backup branches of the pre-forced HEAD MUST be made.
-
-## GitLab Issues
-
-* Device maintainer(s) MUST have a GitLab account for bug tracking and cross-team collaboration.
-* Device maintainer(s) MUST routinely triage, answer and close bug reports.
-* Device maintainer(s) SHOULD make their GitLab name match their maintainer name as displayed on the Wiki.
 
 ## Licensing
 
@@ -332,12 +286,6 @@ __Software deviations are defined as exemptions granted for software requirement
 * Any contribution to an existing Apache 2.0 project MUST fall under Apache Compliance Category A.
 * Any contribution to an existing Apache 2.0 project MUST NOT be in Apache Compliance Category X.
 
-## Wiki
-
-* All devices with a shipping build of LineageOS MUST have a Wiki page with valid installation instructions.
-* All devices with a shipping build of LineageOS MUST document Hardware Deviations from stock capabilities.
-* All devices with a shipping build of LineageOS MUST document Software Deviations from other LineageOS releases of the same device type.
-
 ## Stability
 
 * Issues like the "screen of death" MUST NOT affect the device.
@@ -345,23 +293,7 @@ __Software deviations are defined as exemptions granted for software requirement
 
 ## Recovery
 
-* Maintainers MUST document for users on the Wiki a valid Recovery image by which to install KaleidoscopeOS zip files.
 * Devices that do not have traditional Recovery images MUST support & document another means of installation for KaleidoscopeOS zip files.
 * Maintainers MUST verify official Kaleidoscope Recovery distributions work for KaleidoscopeOS installation.
-* Maintainers SHOULD ship Kaleidoscope recovery as the default solution for their device on the Wiki, though may provide TWRP, or any valid recovery image so long as they have valid installation instructions on the Wiki.
-* Maintainers SHOULD verify that Teamwin Recovery Project (TWRP) official distributions work for LineageOS installation.
-* Failures in official TWRP recoveries SHOULD be raised with the TWRP team or remedied by the maintainer.
-
-# Exceptions
-
-All currently granted exceptions should be listed in the following table. To request an exception, please submit a change to this repository.
-
-| Date       | Device/OEM         | Section Exempted               | Reason |
-|------------|--------------------|--------------------------------|--------|
-| 2018/02/08 | Samsung            | Hardware Encryption            | Samsung devices that cannot support hardware encryption due to Knox/Tee are exempted from the hardware crypto requirements. MUST still support software crypto. |
-| 2018/02/11 | Android TV devices | In-Remote Microphones          | Requires proprietary audio routing/methods that have no OSS counterpart, and rely on proprietary functions. MUST support Microphone input through the Android TV Remote app.|
-| 2018/02/12 | hlte[can/tmo/usc/vzw] | NFC                         | Stock NFC HAL is undocumented and doesn't match any known interfaces. Stealing configs and firmware from devices with a proper setup fails due to a signature mismatch when the (required) firmware download is attempted. |
-| 2019/10/21 | s3ve3g.            | NFC                         | Stock NFC HAL is undocumented and doesn't match any known interfaces. Stealing configs and firmware from devices with a proper setup fails due to a signature mismatch when the (required) firmware download is attempted. |
----
 
 __This document is licensed CC-BY-3.0, with portions adapted from Google’s CDD requirements.__
