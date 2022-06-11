@@ -21,6 +21,7 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
   * [Display](#display)
   * [NFC](#nfc)
   * [Fingerprint Sensor](#fingerprint-sensor)
+  * [Hardware Button](#hardware-button)
   * [IR](#ir)
   * [Accelerometer](#accelerometer)
   * [Gyroscope](#gyroscope)
@@ -138,6 +139,10 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 
 * All devices with a Fingerprint Sensor MUST support the Fingerprint Sensor if the stock OS supports it with Marshmallow or higher Android versions.
 * All devices with a Fingerprint Sensor SHOULD support the Fingerprint Sensor if the stock OS supports it for all other Android versions.
+
+## Hardware Button
+
+* All devices with featured hardware buttons (eg. alert slider, shutter button) SHOULD support these hardware buttons.
 
 ## IR
 
