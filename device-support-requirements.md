@@ -216,7 +216,7 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 
 ## Verity
 
-* All devices MUST disable verity on the system image for userdebug builds.
+* All devices SHOULD support verity on the system image.
 * All devices SHOULD support verity on the vendor image.
 
 ## Updater
