@@ -181,6 +181,7 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 ## Build type
 
 * All devices MUST be configured as user releases.
+* Devices with prebuilt vendor are exempted from the above rule, and instead MUST be configured as non-eng releases.
 
 ## Kernel
 
