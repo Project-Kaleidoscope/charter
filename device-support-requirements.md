@@ -212,6 +212,7 @@ The use of “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT
 ## SELinux status
 
 * All devices MUST be configured for SELinux Enforcing.
+* All devices MUST NOT ignore neverallows.
 
 ## Verity
 
